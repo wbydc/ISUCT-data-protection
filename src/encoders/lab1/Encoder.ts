@@ -46,8 +46,8 @@ export default class Encoder implements IEncoder {
         const rows: number = Math.ceil(source.length / cols);
         const table: CharTable = Array(cols).fill([]).map(() => Array(rows) as number[]);
         
-        for (let j = 0; j < rows; j++) {
-            for (let i = 0; i < cols; i++) {
+        for (let j: number = 0; j < rows; j++) {
+            for (let i: number = 0; i < cols; i++) {
                 const index = en ? (j * cols + i) : (i * rows + j);
                 table[i][j] = source[index] || 32;
             }

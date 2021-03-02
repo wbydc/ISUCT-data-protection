@@ -11,7 +11,7 @@ const encoder: IEncoder = new (encoders.default[options.encoder])();
 if (options.operation === 'encode') {
     const encoded: Buffer = encoder.encode(options.source, options.key);
     if (options.sourceFile) {
-        const filename = options.sourceFile + '.encoded';
+        const filename: string = options.sourceFile + '.encoded';
         fs.writeFileSync(filename, encoded);
         console.log(`Encoded writen to ${filename}`);
     } else {
@@ -21,7 +21,7 @@ if (options.operation === 'encode') {
 if (options.operation === 'decode') {
     const decoded: Buffer = encoder.decode(options.source, options.key);
     if (options.sourceFile) {
-        const filename = options.sourceFile + '.decoded';
+        const filename: string = options.sourceFile + '.decoded';
         fs.writeFileSync(filename, decoded);
         console.log(`Decoded writen to ${filename}`);
     } else {
@@ -31,7 +31,7 @@ if (options.operation === 'decode') {
 if (options.operation === 'both') {
     const encoded: Buffer = encoder.encode(options.source, options.key);
     if (options.sourceFile) {
-        const filename = options.sourceFile + '.encoded';
+        const filename: string = options.sourceFile + '.encoded';
         fs.writeFileSync(filename, encoded);
         console.log(`Encoded writen to ${filename}`);
     } else {
@@ -39,7 +39,7 @@ if (options.operation === 'both') {
     }
     const decoded: Buffer = encoder.decode(encoded, options.key);
     if (options.sourceFile) {
-        const filename = options.sourceFile + '.encoded.decoded';
+        const filename: string = options.sourceFile + '.encoded.decoded';
         fs.writeFileSync(filename, decoded);
         console.log(`Decoded writen to ${filename}`);
     } else {
