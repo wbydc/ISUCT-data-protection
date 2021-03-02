@@ -33,7 +33,8 @@
     "coverageDirectory": "<rootDir>/coverage",
     "testEnvironment": "node",
     "moduleFileExtensions": [
-      "ts"
+      "ts",
+      "js"
     ],
     "transform": {
       "^.+\\.(ts)$": "ts-jest"

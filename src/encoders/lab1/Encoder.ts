@@ -9,10 +9,7 @@ export default class Encoder implements IEncoder {
     encode(source: Buffer, key: Buffer): Buffer {
         const table: CharTable = this.toCharTable(source, key, true);
         
-        const result: Char[] = table.reduce(
-            (col: Char[], acc: Char[]) => [...col, ...acc],
-            [] as Char[]
-        ).filter((i: Char) => !!i);
+        const result: Char[] = table.reduce((col: Char[], acc: Char[]) => [...col, ...acc], [] as Char[]);
 
         return Buffer.from(result);
     }
