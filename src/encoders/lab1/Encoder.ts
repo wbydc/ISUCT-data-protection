@@ -41,8 +41,8 @@ export default class Encoder implements IEncoder {
      * Creates table of chars and reorders it according to key
      * 
      * @param source data to map
-     * @param key 
-     * @param en 
+     * @param key encryption key
+     * @param en encode/decode flag, flips table fill logic
      */
     private toCharTable(source: Buffer, key: Buffer, en: Boolean): CharTable {
         const cols: number = key.length;
