@@ -1,22 +1,25 @@
 import IEncoder from "../../common/IEncoder";
 
-type Char = number;
-type CharTable = Char[][];
+type Byte = number;
+type ByteTable = Byte[][];
 
-type ReorderMapItem = { value: Char, index: number };
+type ReorderMapItem = { value: Byte, index: number };
 
 export default class Encoder implements IEncoder {
     encode(source: Buffer, key: Buffer): Buffer {
-        const table: CharTable = this.toCharTable(source, key, true);
+        const table: ByteTable = this.toByteTable(source, key, true);
         
-        const result: Char[] = table.reduce((col: Char[], acc: Char[]) => [...col, ...acc], [] as Char[]);
+        const result: Byte[] = table.reduce(
+            (col: Byte[], acc: Byte[]) => [...col, ...acc],
+            [] as Byte[]
+        );
 
         return Buffer.from(result);
     }
     decode(source: Buffer, key: Buffer): Buffer {
-        const table: CharTable = this.toCharTable(source, key, false);
+        const table: ByteTable = this.toByteTable(source, key, false);
 
-        const result: Char[] = [];
+        const result: Byte[] = [];
         for (let i: number = 0; i < table[0].length; i++) {
             for (let j: number = 0; j < table.length; j++) {
                 result.push(table[j][i]);
@@ -35,16 +38,16 @@ export default class Encoder implements IEncoder {
     }
 
     /**
-     * Creates table of chars and reorders it according to key
+     * Creates table of Bytes and reorders it according to key
      * 
      * @param source data to map
      * @param key encryption key
      * @param en encode/decode flag, flips table fill logic
      */
-    private toCharTable(source: Buffer, key: Buffer, en: Boolean): CharTable {
+    private toByteTable(source: Buffer, key: Buffer, en: Boolean): ByteTable {
         const cols: number = key.length;
         const rows: number = Math.ceil(source.length / cols);
-        const table: CharTable = Array(cols).fill([]).map(() => Array(rows) as number[]);
+        const table: ByteTable = Array(cols).fill([]).map(() => Array(rows) as number[]);
         
         for (let j: number = 0; j < rows; j++) {
             for (let i: number = 0; i < cols; i++) {
@@ -64,7 +67,7 @@ export default class Encoder implements IEncoder {
             return a.value === b.value ? 0 : (a.value < b.value) ? -1 : 1;
         });
 
-        const orderedTable: CharTable = Array(table.length) as CharTable;
+        const orderedTable: ByteTable = Array(table.length) as ByteTable;
         for (let i: number = 0; i < key.length; i++) {
             orderedTable[map[i].index] = table[i];
         }
