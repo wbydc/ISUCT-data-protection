@@ -12,11 +12,12 @@ yarn both lab1 "encode this message" "82354671"
 ```
 
 method: `encode` | `decode` | `both` - what you want to do with source<br>
-encoder: `lab1` | `lab2` - encoder (more info in Encoders section)<br>
+encoder: `lab1` | `lab2` | `lab3` - encoder (more info in Encoders section)<br>
 source: source to encode/decode, string or path to file (if `-f` passed)<br>
 key: encryption key, string or path to file (if `-f` passed)
 
 ## Encoders
 
 `lab1` - First work, permutation encryption<br>
-`lab2` - Second work, Vigenère code 
+`lab2` - Second work, Vigenère code<br>
+`lab3` - Third work, gamming encryption
