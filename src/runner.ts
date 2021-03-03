@@ -35,7 +35,7 @@ if (options.operation === 'both') {
         fs.writeFileSync(filename, encoded);
         console.log(`Encoded writen to ${filename}`);
     } else {
-        console.log(`Encoded: [${encoded.toString()}]`);
+        console.log(`Encoded: ${encoded.toString()}`);
     }
     const decoded: Buffer = encoder.decode(encoded, options.key);
     if (options.sourceFile) {
@@ -43,6 +43,6 @@ if (options.operation === 'both') {
         fs.writeFileSync(filename, decoded);
         console.log(`Decoded writen to ${filename}`);
     } else {
-        console.log(`Decoded: [${decoded.toString()}]`);
+        console.log(`Decoded: ${decoded.toString()}`);
     }
 }
